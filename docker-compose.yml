@@ -19,6 +19,8 @@ services:
     volumes:
       - portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - traefik
     deploy:
       placement:
         constraints: [node.role == manager]
@@ -27,3 +29,7 @@ services:
 
 volumes:
   portainer_data:
+
+networks:
+  traefik:
+    external: true
