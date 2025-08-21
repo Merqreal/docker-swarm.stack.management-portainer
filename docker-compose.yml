@@ -27,6 +27,14 @@ services:
       restart_policy:
         condition: on-failure
 
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true   # remove old images
+      - WATCHTOWER_POLL_INTERVAL=10800  # check every 3 hours  
+
 volumes:
   portainer_data:
 
